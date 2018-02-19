@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @tweet.username %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @tweet.text %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @tweet.status %>
+</p>
+
+<p>
+  <strong>Approvedby:</strong>
+  <%= @tweet.approvedby %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @tweet.image %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+<%= link_to 'Back', tweets_path %>
