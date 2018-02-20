@@ -1,0 +1,29 @@
+<html>
+<script src="/javascripts/moderator_updatestat.js"></script>
+<body ng-app="moderator_update">
+<h1>Tweets</h1>
+<!--<%= link_to "Logout", users_path, class: 'rite' %><%= link_to @uname+"| ", tweet_indexn_path(@usr),class: 'rite'  %><%= link_to 'Dashboard| ', new_tweet_path,class: 'rite'   %><% if @type .eql? "moderator"%> <%= link_to 'View Tweets|', mod_front_path,class: 'rite'%><%= link_to 'Update Tweets|', tweets_path,class: 'rite'%><% end %>-->
+
+<table ng-controller="updateStatCtrl">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Text</th>
+      <th>Status</th>
+      <th colspan="4">Update Status</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr ng-repeat="tweet in tweets" >
+        <td><a href="">{{tweet.username}}</a></td>
+        <td>{{tweet.text}}</td>
+        <td>{{tweet.status}}</td>
+        <td><span ng-click="setStatus(tweet,'active')">Active</span>
+        &nbsp; &nbsp;<span ng-click="setStatus(tweet,'inactive')">Inactive</span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
