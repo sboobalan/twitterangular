@@ -23,13 +23,11 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
   end
+  
   def usertweets
   end
   def usertweetsang
     @usr=User.find(params['user_id'])
-    puts "AAAAAAAAAAAAA"
-    puts params
-    puts @usr[:username]
     @tweets=@usr.tweets
     render json: @tweets
   end

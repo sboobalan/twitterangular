@@ -25,7 +25,10 @@ class TweetsController < ApplicationController
   def new
     @tweet = Tweet.new
   end
-
+  def dashboard
+    @twts= Tweet.all.where("status='active'").order(created_at: :desc, updated_at: :desc)
+    render json: @twts
+  end
   # GET /tweets/1/edit
   def edit
   end
@@ -40,9 +43,10 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-    @usr.tweets << [@tweet]
+    #@usr.tweets << [@tweet]
+    @tweet['user_id'] = @usr[:id]
     respond_to do |format|
-      if @usr.save
+      if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
@@ -88,6 +92,6 @@ class TweetsController < ApplicationController
     end
     def getusr
       session['username']='Alex'
-      @usr=User.where("username='"+session['username']+"'")
+      @usr=User.where("username='"+session['username']+"'")[0]
     end
 end

@@ -1,5 +1,42 @@
-<h1>New Tweet</h1>
+<h1>Dashboard</h1>
 
-<%= render 'form', tweet: @tweet %>
 
-<%= link_to 'Back', tweets_path %>
+<p>Tweets</p>
+<div ng-app="dash">
+  <div ng-controller="mainCtrl">
+    <button ng-click="">Dashboard</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="d in tweets">
+                <td>{{d.username}}</td>
+                <td>{{d.text}}</td>
+                <td>{{2+2}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  app=angular.module("dash",['restangular']);
+  app.controller('mainCtrl',function($scope,Restangular){
+    var service = Restangular.all('tweets');
+    var params ={};
+    service.customGET("dashboard",params).then(
+    function(data){
+      //alert("Inside success");
+      $scope.tweets = data;
+      console.log(data);
+    },
+    function(error)
+    {
+      alert("Inside failure");
+      console.log(error);
+    });
+  });
+</script>
