@@ -1,58 +1,35 @@
 app = angular.module('moderator_update', ['restangular']);
 app.controller('updateStatCtrl', function($scope, Restangular) {
-      var allTweets;
       $scope.tweets ={}
       Restangular.all('tweets').customGET("all_tweets").then(
         function(data)
         {
           $scope.tweets = data;
-          /*allTweets = data;
-          if(allTweets !== undefined)
+          if($scope.tweets.length == 0)
           {
-            for( var i in alltweets)
-            {
-              if(i["status"] == "inactive")
-                {
-                  $scope.tweets.push(i)
-                }
-            }
-          }*/
+              $scope.anyTweets = "No more inactive Tweets to update"
+          }
         },
         function(error)
         {
-          console.log("Retrive Failed");
+          $scope.anyTweets = "Retrive Failed";
         }
       )
-
-
-
-     var setStatus = function(tweet,status){
+      $scope.setStatus = function(tweet,status){
           var params = {"id" : tweet.id , "status" : status}
-          console.log(params);
-        }
-          /*Restangular.all('tweets').customGET("setStatus",params).then(
-            function(status){
-
+          Restangular.all('tweets').customGET("setStatus",params).then(
+            function(success){
+                alert(success[0][status]);
+                tweet.status=status;
+            },
+            function(error)
+            {
+              alert("Update Failed Try again!")
             }
 
           )
 
       };
-      $scope.alert = function(text) {
-    		alert(text);
-	    };
-	    var service = Restangular.all('tweets');
-	    var params ={name: "Ajju"};
-	    service.customGET("temp1",params).then(
-	    function(data){
-		alert("Inside success");
-		$scope.data = data;
-	    },
-	    function(error)
-	    {
-		alert("Inside failure");
-		console.log(error);
-  });*/
 
 
 	});

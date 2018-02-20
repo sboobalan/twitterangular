@@ -12,6 +12,15 @@ class TweetsController < ApplicationController
   def show
   end
 
+  def set_status
+    @tweet = Tweet.find(params[:id])
+    @tweet.status = params[:status]
+    if @tweet.update_attributes(:status => params[:status])
+      render json: [status: "updated"]
+    else
+      render json: [status: "failed"]
+    end
+  end
   # GET /tweets/new
   def new
     @tweet = Tweet.new

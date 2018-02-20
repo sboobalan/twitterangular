@@ -1,10 +1,10 @@
 <html>
 <script src="/javascripts/moderator_updatestat.js"></script>
-<body ng-app="moderator_update">
+<body ng-app="moderator_update" ng-controller="updateStatCtrl">
 <h1>Tweets</h1>
 <!--<%= link_to "Logout", users_path, class: 'rite' %><%= link_to @uname+"| ", tweet_indexn_path(@usr),class: 'rite'  %><%= link_to 'Dashboard| ', new_tweet_path,class: 'rite'   %><% if @type .eql? "moderator"%> <%= link_to 'View Tweets|', mod_front_path,class: 'rite'%><%= link_to 'Update Tweets|', tweets_path,class: 'rite'%><% end %>-->
-
-<table ng-controller="updateStatCtrl">
+  <center><h2>{{anyTweets}}</h2></center>
+<table>
   <thead>
     <tr>
       <th>Username</th>
@@ -22,6 +22,7 @@
         &nbsp; &nbsp;<span ng-click="setStatus(tweet,'inactive')">Inactive</span>
         </td>
       </tr>
+
   </tbody>
 </table>
 

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get "/moderator_updatestat" => "tweets#moderator_updatestat"
   get "/tweets/all_tweets" => "tweets#all_tweets"
-
+  post "tweets/setStatus" => "tweets#set_status"
 
   resources :tweets
   resources :users
