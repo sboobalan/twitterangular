@@ -21,6 +21,12 @@ class TweetsController < ApplicationController
   def edit
   end
 
+  def moderator_updatestat
+  end
+
+  def all_tweets
+    render json: Tweet.where("status like 'inactive'")
+  end
   # POST /tweets
   # POST /tweets.json
   def create
