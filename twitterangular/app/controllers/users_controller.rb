@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [ :edit, :update, :destroy]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #before_action :getusr, only: [:usertweets]
   # GET /users
   # GET /users.json
   def index
@@ -23,7 +23,16 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
   end
-
+  def usertweets
+  end
+  def usertweetsang
+    @usr=User.find(params['user_id'])
+    puts "AAAAAAAAAAAAA"
+    puts params
+    puts @usr[:username]
+    @tweets=@usr.tweets
+    render json: @tweets
+  end
   # GET /users/new
   def new
     @user = User.new
@@ -162,5 +171,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :username, :password, :email, :designation,:dp)
+    end
+    def getusr
+      session['username']='Alex'
+      @usr=User.where("username='"+session['username']+"'")
     end
 end

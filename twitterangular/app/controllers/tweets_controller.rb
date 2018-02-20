@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
-
+  before_action :getusr, only: [:create]
   # GET /tweets
   # GET /tweets.json
   def index
@@ -40,9 +40,9 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-
+    @usr.tweets << [@tweet]
     respond_to do |format|
-      if @tweet.save
+      if @usr.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
@@ -85,5 +85,9 @@ class TweetsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
       params.require(:tweet).permit(:username, :text, :status, :approvedby, :image)
+    end
+    def getusr
+      session['username']='Alex'
+      @usr=User.where("username='"+session['username']+"'")
     end
 end

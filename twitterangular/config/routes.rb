@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   post "tweets/setStatus" => "tweets#set_status"
 
   resources :tweets
-  resources :users
+  get 'usertweetsang' => 'users#usertweetsang'
+  resources :users do
+    get 'usertweets'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
