@@ -1,42 +1,43 @@
+<html ng-app="dash">
+<head>
+<script src="/javascripts/tweetnew.js"></script>
+</head>
+<body>
 <h1>Dashboard</h1>
 
+<form enctype="multipart/form-data" action="/tweets" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="pQtCv5bwUA8J8MEF1YPwu9TLZY3/eAAFmB2ypCz2++ZY0wpfTk1NBxjcz8v0gZSMHqLMXyvcpCwYKSEm78c3Vg==" type="hidden">
 
-<p>Tweets</p>
-<div ng-app="dash">
+  <div class="field">
+    <input id="tweet_text" name="tweet[text]" type="text" placeholder="Tweet Something">
+  </div>
+
+  <div class="field">
+    <label for="tweet_image" id="upl"> Upload Image</label><input id="tweet_image" name="tweet[image]" type="file">
+  </div>
+
+  <div class="actions">
+    <input name="commit" value="Tweet" data-disable-with="Create Tweet" type="submit">
+  </div>
+</form>
+<a href="/tweets">Back</a>
+
+<h3>Tweets</h3>
+<div>
   <div ng-controller="mainCtrl">
-    <button ng-click="">Dashboard</button>
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Text</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="d in tweets">
-                <td>{{d.username}}</td>
-                <td>{{d.text}}</td>
-                <td>{{2+2}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="nw">
+      <div ng-repeat="tweet in tweets">
+        <div id="tw">
+          <span class="un"> {{tweet.username}} </span><span class="dt">{{tweet.created_at | date:'MMM dd'}} </span>
+          <br>
+          {{tweet.text}} <br>
+          <div ng-show="imgnull(tweet)">
+            <img src={{tweet.image.thumb.url}}></img>
+          </div>
+        </div>
+        <br>
+        <br>
+      </div>
+    </div>
   </div>
 </div>
-<script>
-  app=angular.module("dash",['restangular']);
-  app.controller('mainCtrl',function($scope,Restangular){
-    var service = Restangular.all('tweets');
-    var params ={};
-    service.customGET("dashboard",params).then(
-    function(data){
-      //alert("Inside success");
-      $scope.tweets = data;
-      console.log(data);
-    },
-    function(error)
-    {
-      alert("Inside failure");
-      console.log(error);
-    });
-  });
-</script>
+</body>

@@ -1,0 +1,27 @@
+<!doctype html >
+<html ng-app="usertweets">
+<head>
+    <script src="/javascripts/usertweets.js"></script>
+</head>
+<body>
+  <div ng-controller="mainCtrl">
+    <div id="nw">
+      <div ng-show="tweets[0].username">
+      <div ng-repeat="tweet in tweets">
+        <div id="tw">
+          <span class="un"> {{tweet.username}} </span><span class="dt">{{tweet.created_at | date:'MMM dd'}} </span>
+          <br>
+          {{tweet.text}} <br>
+          <div ng-show="imgnull(tweet)">
+            <img src={{tweet.image.url}}></img>
+          </div>
+        </div>
+        <br>
+        <br>
+      </div>
+    </div>
+    <div ng-show="tweets.msg"> <h1>{{tweets.msg}}</h1></div>
+    </div>
+  </div>
+</body>
+</html>

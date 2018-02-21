@@ -72,7 +72,7 @@ html,body {
   position:relative;
   top:-32px;
 }
-.field input{
+[type^="text"]{
   border:none;
   border-bottom: 2px solid gray;
 }
@@ -89,7 +89,7 @@ html,body {
   position:relative;
   left : 700px;
 }
-#reg label{
+#reg label, #upl  {
   font-size: 15px;
   line-height: 2.2;
 }

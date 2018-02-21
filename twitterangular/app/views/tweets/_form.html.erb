@@ -12,28 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username, id: :tweet_username %>
-  </div>
-
-  <div class="field">
     <%= form.label :text %>
     <%= form.text_field :text, id: :tweet_text %>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :tweet_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :approvedby %>
-    <%= form.text_field :approvedby, id: :tweet_approvedby %>
-  </div>
-
-  <div class="field">
     <%= form.label :image %>
-    <%= form.text_field :image, id: :tweet_image %>
+    <%= form.file_field :image, id: :tweet_image %>
   </div>
 
   <div class="actions">

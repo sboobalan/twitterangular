@@ -45,9 +45,25 @@ class UsersController < ApplicationController
   def usertweets
   end
   def usertweetsang
-    @usr=User.find(params['user_id'])
-    @tweets=@usr.tweets
-    render json: @tweets
+    puts "hhhhhhhhhhhhhhh"
+    if(@usr=User.find_by id: params['user_id'])
+
+      puts "aaaaaaaaaaaaaaa"
+      puts @usr
+      if @usr.nil?
+        puts "yyyyyyyyyy"
+        #render json: {msg: "No such user"}
+      end
+      @tweets=@usr.tweets
+      puts "AAAAAAAAAAA"
+      puts @tweets
+      render json: @tweets
+
+    else
+      
+      render json: {msg: "Page does not exist"}
+    end
+
   end
   # GET /users/new
   def new

@@ -79,8 +79,12 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.status="inactive"
+    @tweet.username=@usr[:username]
     #@usr.tweets << [@tweet]
     @tweet['user_id'] = @usr[:id]
+    puts @tweet[:image]
+    puts "AAAAAAAAAAAAA"
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }

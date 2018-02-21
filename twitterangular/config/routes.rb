@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   get "/users/checkmail" => "users#checkmail"
   resources :tweets
   get 'users/usertweetsang' => 'users#usertweetsang'
-  get 'usertweets' => 'users#usertweets'
-  resources :users
+
+  resources :users do
+    get 'usertweets' => 'users#usertweets'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end
