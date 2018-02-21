@@ -1,5 +1,61 @@
-<h1>New User</h1>
+<html>
+  <head>
+    <title>Twitter</title>
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token" content="IKYDbjebRr8SolK4+c0uJwo0LJjgYycwNy2P+IJCjPAB+RRo+7tVjnTo6wigI4KWZSqd70u+9CEvMVIm+TpyTw==">
+    <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    <script src="/javascripts/index.js"></script>
+  </head>
+  <body>
+    <div id="bgimage">
+      <p>Welcome to Infi_Twitter.<br>Ready to Join?</p>
+      <div id="reg">
+        <form name="signupform" ng-app="signup" ng-controller="signupctrl" action="/users" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+          <input name="utf8" type="hidden" value="✓">
+          <input type="hidden" name="authenticity_token" value="IKYDbjebRr8SolK4+c0uJwo0LJjgYycwNy2P+IJCjPAB+RRo+7tVjnTo6wigI4KWZSqd70u+9CEvMVIm+TpyTw==">
 
-<%= render 'form', user: @user %>
+          <div class="field">
+            Name:  <br> <input type="text" name="user[name]" placeholder="Name" ng-model="name" required>
+          </div>
 
-<%= link_to 'Back', users_path %>
+          <div class="field">
+            Username: <br><input type="text" name="user[username]" ng-model="uname" placeholder="User name" ng-blur="check()" ng-focus="remove()"  required>
+            <span id="status" ng-model="status" class="fieldspan">
+              {{status}}
+            </span>
+          </div>
+
+          <div class="field">
+            Password: <br><input type="password" id="password" name="user[password]" placeholder="Password" ng-model="password" required>
+          </div>
+
+          <div class="field">
+            Confirm Password: <br><input type="password" id="confirm_password" placeholder="Confirm password" ng-blur="checkpwd()" ng-focus="remove1()" ng-model="confirm_password" required>
+            <span id="statuspwd" ng-model="statuspwd" class="fieldspan">
+              {{statuspwd}}
+            </span>
+          </div>
+
+          <div class="field">
+            Email: <br><input type="email" id="email" name="user[email]" placeholder="Email ID" ng-blur="checkmail()"  ng-model="email" required>
+            <span id="statusmail" ng-model="statusmail" class="fieldspan">
+              {{statusmail}}
+            </span>
+          </div>
+          <div class="field">
+            Profile Picture: <br><input type="file" id="dp" name="user[dp]">
+          </div>
+
+          <div class="actions row">
+            <span class="column">
+              <input type="submit" value="Register">
+            </span>
+            <span class="column">
+              <input type="button" value="Back" onclick='window.location.href="/users"'>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

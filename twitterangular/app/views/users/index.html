@@ -1,0 +1,29 @@
+<!doctype html>
+<html >
+<script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+  <script src="/javascripts/index.js">
+  </script>
+  <body ng-app="signin" ng-controller="signinctrl" id="loginbod">
+    <div id="nav">
+      <span id="sgn" >
+        Not a member yet?
+        <input type="button" value='SignUp' onclick='window.location.href="users/new"'></input>
+      </span>
+    </div>
+    <form name="signin_form" ng-submit="login()" >
+      <div id="log">
+        <div id="p1">
+          <h1>Login</h1><br><br>
+        </div>
+        <div id="log2">
+          <br>
+          <input type="text" id="uname" placeholder= "Enter Username" class= "inp" ng-model="uname" required></input><br>
+          <input type="password" id='password' placeholder= 'Enter Password' class= "inp" ng-model="pwd" required></input><br><br>
+          <div class="row"><br>
+            <div class="column logy"><input type="submit" value= "Login" ></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
