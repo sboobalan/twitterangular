@@ -1,0 +1,53 @@
+<h1>Tweets</h1>
+<!--<%= link_to "Logout", users_path, class: 'rite' %><%= link_to @uname+"| ", tweet_indexn_path(@usr),class: 'rite'  %><%= link_to 'Dashboard| ', new_tweet_path,class: 'rite'   %><% if @type .eql? "moderator"%> <%= link_to 'View Tweets|', mod_front_path,class: 'rite'%><%= link_to 'Update Tweets|', tweets_path,class: 'rite'%><% end %>-->
+<script src="/javascripts/moderatorview.js"></script>
+
+<div class="dropdown rite">
+<button onclick="myFunction()" class="dropbtn"><i class="down">
+</i></button>
+  <div id="myDropdown" class="dropdown-content">
+  </div>
+</div>
+<div ng-app="modView" ng-controller="modViewCtrl">
+
+
+<table id="display_table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Text</th>
+      <th>Status</th>
+      <th colspan="3">Filter tweets <br>
+        <select ng-model="selectedFilter" ng-options = "item for item in filterValue" ng-change="applyFilter()">
+            <option value="">Choose a value</option>
+        </select>
+        </th>
+    </tr>
+  </thead>
+
+  <tbody ng-init="tweet_set=0">
+
+      <tr ng-repeat="tweet in tweets" ng-init ="tweet_set=tweet_set+1">
+        <td><a href="">{{tweet.username}}</a></td>
+        <td>{{tweet.text}}</td>
+        <td>{{tweet.status}}</td>
+        <td>
+          <select ng-change="setStatus(tweet,tweet_set)" ng-model="tweet_set"  ng-options = "item for item in statusValue">
+            <option value="">Update the Status </option>
+          </select>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<script>
+var id = window.sessionStorage.getItem("user_id")
+var uname = window.sessionStorage.getItem("user_name")
+var params=[
+              {text : "Logout", location : "/users"},
+              {text : uname , location : "/users/" + id +"/usertweets"}
+           ]
+var dropdownmenu = document.getElementById("myDropdown");
+document.onload = addDropDownItem(dropdownmenu,params);
+</script>

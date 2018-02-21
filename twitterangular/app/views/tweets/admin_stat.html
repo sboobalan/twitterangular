@@ -1,0 +1,48 @@
+<script src="/javascripts/admin_stat.js"></script>
+<h1> Tweets Stats <h1>
+<!--<%= link_to " Logout", users_path, class: 'lnks' %><%= link_to "Home | ", type_change_path,class: 'lnks'  %>-->
+
+<div class="dropdown rite">
+<button onclick="myFunction()" class="dropbtn"><i class="down">
+</i></button>
+  <div id="myDropdown" class="dropdown-content">
+  </div>
+</div>
+
+<table ng-app="tweetStat" ng-controller="tweetStatCtrl">
+  <thead>
+    <tr>
+      <th colspan = "2">Today stat</th>
+      <th colspan = "2">Total stat</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+	<tr>
+	<td>Active Tweets</td>
+	<td>Inactive Tweets</td>
+	<td>Active Tweets</td>
+	<td>Inactive Tweets</td>
+	</tr>
+
+	<tr>
+	<td>{{stat[0]}}</td>
+	<td>{{stat[1]}}</td>
+	<td>{{stat[2]}}</td>
+	<td>{{stat[3]}}</td>
+	</tr>
+
+
+  </tbody>
+</table>
+
+<br>
+<script>
+var params=[
+              {text : "Logout", location : "/users"},
+              {text : "Update Users" , location : "/user_desg_set"}
+           ]
+var dropdownmenu = document.getElementById("myDropdown");
+document.onload = addDropDownItem(dropdownmenu,params);
+</script>

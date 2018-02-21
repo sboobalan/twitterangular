@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+  end
 
+  def user_desg_set
   end
 
   def type_change
@@ -18,12 +20,28 @@ class UsersController < ApplicationController
 	      render js: @query
   end
 
+  def allUsers
+    if(params[:type] == "All")
+      render json: User.all
+    else
+      render json: User.where("designation like '" + params[:type] +"'")
+    end
+  end
 
-  # GET /users/1
+  def set_desg
+    @user = User.find(params[:id])
+    @user.designation = params[:status]
+    if @user.update_attributes(:designation => params[:status])
+      render json: ["status": "updated"]
+    else
+      render json: ["status": "failed"]
+    end
+  end
+    # GET /users/1
   # GET /users/1.json
   def show
   end
-  
+
   def usertweets
   end
   def usertweetsang

@@ -12,19 +12,51 @@ class TweetsController < ApplicationController
   def show
   end
 
+  def tweet_stat
+    todate =  Date.today.to_s
+    @tweets = Tweet.where("created_at like '" +todate +"%' and status like 'active'")
+    if(!(@tweets.nil?))
+      today_active = @tweets.length
+    else
+      today_active = 0
+    end
+    @tweets = Tweet.where("created_at like '" +todate +"%' and status like 'inactive'")
+    if(!(@tweets.nil?))
+      today_inactive = @tweets.length
+    else
+      today_inactive = 0
+    end
+    @tweets = Tweet.where("status like 'active'")
+    if(!(@tweets.nil?))
+      total_active = @tweets.length
+    else
+      total_active = 0
+    end
+    @tweets = Tweet.where("status like 'inactive'")
+    if(!(@tweets.nil?))
+      total_inactive = @tweets.length
+    else
+      total_inactive = 0
+    end
+    #obj = ["today_active" : today_active , "today_inactive" : today_inactive , "total_active" : total_active , "total_inactive" : total_inactive ]
+    obj =[today_active,today_inactive,total_active,total_inactive]
+    render json: obj
+  end
+
   def set_status
     @tweet = Tweet.find(params[:id])
     @tweet.status = params[:status]
     if @tweet.update_attributes(:status => params[:status])
-      render json: [status: "updated"]
+      render json: ["status": "updated"]
     else
-      render json: [status: "failed"]
+      render json: ["status": "failed"]
     end
   end
   # GET /tweets/new
   def new
     @tweet = Tweet.new
   end
+
   def dashboard
     @twts= Tweet.all.where("status='active'").order(created_at: :desc, updated_at: :desc)
     render json: @twts
@@ -33,11 +65,15 @@ class TweetsController < ApplicationController
   def edit
   end
 
-  def moderator_updatestat
+  def moderatorview
   end
 
   def all_tweets
-    render json: Tweet.where("status like 'inactive'")
+    if(params[:status] == "all")
+      render json: Tweet.all
+    else
+      render json: Tweet.where("status like '" + params[:status] +"'")
+    end
   end
   # POST /tweets
   # POST /tweets.json
@@ -84,7 +120,7 @@ class TweetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
       @tweet = Tweet.find(params[:id])
-    end
+      end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
