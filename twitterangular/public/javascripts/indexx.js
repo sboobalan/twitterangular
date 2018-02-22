@@ -25,8 +25,19 @@ app.controller('signinctrl',function($scope,$window,Restangular){
           else if (data.password === $scope.pwd) {
             //$cookieStore.put('usrid', data.id);boo is a useless fellow
             window.sessionStorage.setItem('user_id', data.id);
-            window.sessionStorage.setItem('username', data.username);
-            window.location.href = '/tweets/new';
+            window.sessionStorage.setItem('user_name', data.username);
+            console.log (data.designation);
+            if(data.designation === "user")
+            {
+              window.location.href = '/tweets/new';
+            }
+            else if (data.designation === "moderator")
+            {
+              window.location.href = '/moderatorview';
+            }
+            else {
+              window.location.href = '/admin_stat';
+            }
             //alert("Welcome " + $scope.uname);
           }
         }
