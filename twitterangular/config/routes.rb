@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   get "/admin_stat" => "tweets#admin_stat"
   get "/tweets/tweet_stat" => "tweets#tweet_stat"
-  get "/moderator_updatestat" => "tweets#moderator_updatestat"
   get "/tweets/all_tweets" => "tweets#all_tweets"
   get "tweets/setStatus" => "tweets#set_status"
   get '/tweets/dashboard' => 'tweets#dashboard'
