@@ -1,20 +1,34 @@
 <!doctype html >
-<html ng-app="usertweets">
+<html >
 <head>
     <script src="/javascripts/usertweets.js"></script>
+
 </head>
-<body>
-  <div ng-controller="mainCtrl">
+<body ng-app="usertweets" ng-controller="mainCtrl">
+  <div class="dropdown rite">
+  <button onclick="myFunction()" class="dropbtn"><i class="down">
+  </i></button>
+    <div id="myDropdown" class="dropdown-content">
+    </div>
+  </div>
+
+
+
+  <div>
     <div id="nw">
       <div ng-show="tweets[0].username">
-      <div ng-repeat="tweet in tweets">
+        <div ng-init="i=-1"></div>
+      <div ng-repeat="tweet in tweets" ng-init="i=i+1">
         <div id="tw">
+          <span class="">
+            <img src={{dop[i].dp.thumb.url}}></img>
+          </span>
           <span class="un"> {{tweet.username}} </span><span class="dt">{{tweet.created_at | date:'MMM dd'}} </span>
           <br>
           {{tweet.text}} <br>
-          <div ng-show="imgnull(tweet)">
-            <img src={{tweet.image.url}}></img>
-          </div>
+          <!-- <div ng-show="imgnull(tweet)"> -->
+            <!-- <img src={{tweet.image.url}}></img> -->
+          <!-- </div> -->
         </div>
         <br>
         <br>
@@ -24,4 +38,18 @@
     </div>
   </div>
 </body>
+<script>
+var id = window.sessionStorage.getItem("user_id")
+var uname = window.sessionStorage.getItem("user_name")
+var params=[
+              {text : "Logout", location : "/users"},
+              {text : "View Tweets" , location : "/tweets/new"}
+           ]
+var dropdownmenu = document.getElementById("myDropdown");
+if(dropdownmenu.childNodes.length === 1)
+{
+  document.onload = addDropDownItem(dropdownmenu,params);
+}
+</script>
+
 </html>

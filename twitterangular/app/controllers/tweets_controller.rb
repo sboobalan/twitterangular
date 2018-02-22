@@ -58,8 +58,13 @@ class TweetsController < ApplicationController
   end
 
   def dashboard
-    @twts= Tweet.all.where("status='active'").order(created_at: :desc, updated_at: :desc)
-    render json: @twts
+    @twts= Tweet.where("status='active'").order(created_at: :desc, updated_at: :desc)
+    @g=[]
+    @twts.each do |t|
+      @g.push(User.find_by username: t.username)
+      puts @g
+    end
+    render json: {cont: @twts, dp:@g}
   end
   # GET /tweets/1/edit
   def edit
@@ -80,6 +85,9 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.status="inactive"
+    puts "aaaaa"
+    puts @usr
+    puts "aaaa"
     @tweet.username=@usr[:username]
     #@usr.tweets << [@tweet]
     @tweet['user_id'] = @usr[:id]
@@ -87,7 +95,7 @@ class TweetsController < ApplicationController
     puts "AAAAAAAAAAAAA"
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to new_tweet_path, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }
@@ -131,7 +139,6 @@ class TweetsController < ApplicationController
       params.require(:tweet).permit(:username, :text, :status, :approvedby, :image)
     end
     def getusr
-      session['username']='Alex'
       @usr=User.where("username='"+session['username']+"'")[0]
     end
 end

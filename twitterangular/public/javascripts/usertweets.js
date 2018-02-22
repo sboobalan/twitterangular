@@ -1,6 +1,8 @@
-app = angular.module('usertweets', ['restangular']);
-
+app = angular.module('usertweets', [$window,'restangular']);
+//alert("hi");
+$window.location.reload();
 app.controller('mainCtrl', function($scope,$location, Restangular) {
+  //alert("msin");
     $scope.alert = function(text) {
       alert(text);
     };
@@ -14,8 +16,9 @@ app.controller('mainCtrl', function($scope,$location, Restangular) {
 
 
       console.log("gggg"+id);
-      $scope.tweets = data;
-      console.log(data);
+      $scope.tweets = data.cont;
+      $scope.dop=data.dp;
+      console.log(data.dp[0].dp.thumb.url);
     },
     function(error)
     {

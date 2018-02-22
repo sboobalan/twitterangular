@@ -4,13 +4,12 @@ function myFunction() {
 
 function addDropDownItem(id,items){
   var dropdownmenu = id
-  console.log(items)
   for(item in items)
   {
     var dropdownitem = document.createElement('a')
     var dropdownitemtext = document.createTextNode(items[item]["text"])
     dropdownitem.appendChild(dropdownitemtext)
-    dropdownitem.setAttribute("href",items[item]["location"]);
+    dropdownitem.setAttribute("ng-href",items[item]["location"]);
     dropdownmenu.appendChild(dropdownitem);
   }
 }

@@ -2,7 +2,7 @@ var app = angular.module("userDesgView",['restangular'])
 app.controller("userDesgViewCtrl",function($scope,Restangular){
 
   $scope.filterValue = ["All","User", "Moderator"]
-  $scope.desgValue = ["User","Moderator"]
+  $scope.desgValue = ["user","moderator"]
 
   $scope.applyFilter = function(){
     var params = {"type" : $scope.selectedFilter }

@@ -1,9 +1,23 @@
 <html ng-app="dash">
 <head>
 <script src="/javascripts/tweetnew.js"></script>
+<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js"></script>
+<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
+<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/restangular/1.4.0/restangular.js"></script>
+
 </head>
 <body>
 <h1>Dashboard</h1>
+
+<div class="dropdown rite">
+<button onclick="myFunction()" class="dropbtn"><i class="down">
+</i></button>
+  <div id="myDropdown" class="dropdown-content">
+  </div>
+</div>
+
 
 <form enctype="multipart/form-data" action="/tweets" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="pQtCv5bwUA8J8MEF1YPwu9TLZY3/eAAFmB2ypCz2++ZY0wpfTk1NBxjcz8v0gZSMHqLMXyvcpCwYKSEm78c3Vg==" type="hidden">
 
@@ -24,9 +38,14 @@
 <h3>Tweets</h3>
 <div>
   <div ng-controller="mainCtrl">
-    <div id="nw">
-      <div ng-repeat="tweet in tweets">
+    <div id="nw" ng-init="i=-1">
+      <div ng-repeat="tweet in tweets" ng-init="i=i+1">
         <div id="tw">
+
+
+          <span class="">
+            <img src={{dop[i].dp.thumb.url}}></img>
+          </span>
           <span class="un"> {{tweet.username}} </span><span class="dt">{{tweet.created_at | date:'MMM dd'}} </span>
           <br>
           {{tweet.text}} <br>
@@ -41,3 +60,16 @@
   </div>
 </div>
 </body>
+<script>
+var id = window.sessionStorage.getItem("user_id")
+var uname = window.sessionStorage.getItem("user_name")
+var params=[
+              {text : "Logout", location : "/users"},
+              {text : uname , location : "/users/" + id +"/usertweets"}
+           ]
+var dropdownmenu = document.getElementById("myDropdown");
+if(dropdownmenu.childNodes.length === 1)
+{
+  document.onload = addDropDownItem(dropdownmenu,params);
+}
+</script>

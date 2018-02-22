@@ -49,5 +49,8 @@ var params=[
               {text : uname , location : "/users/" + id +"/usertweets"}
            ]
 var dropdownmenu = document.getElementById("myDropdown");
-document.onload = addDropDownItem(dropdownmenu,params);
+if(dropdownmenu.childNodes.length === 1)
+{
+  document.onload = addDropDownItem(dropdownmenu,params);
+}
 </script>

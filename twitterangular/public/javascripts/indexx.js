@@ -26,7 +26,6 @@ app.controller('signinctrl',function($scope,$window,Restangular){
             //$cookieStore.put('usrid', data.id);boo is a useless fellow
             window.sessionStorage.setItem('user_id', data.id);
             window.sessionStorage.setItem('user_name', data.username);
-            console.log (data.designation);
             if(data.designation === "user")
             {
               window.location.href = '/tweets/new';
@@ -35,7 +34,7 @@ app.controller('signinctrl',function($scope,$window,Restangular){
             {
               window.location.href = '/moderatorview';
             }
-            else {
+            else if (data.designation === "admin"){
               window.location.href = '/admin_stat';
             }
             //alert("Welcome " + $scope.uname);

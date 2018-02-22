@@ -2,12 +2,15 @@ app=angular.module("dash",['restangular']);
 app.controller('mainCtrl',function($scope,Restangular){
   var service = Restangular.all('tweets');
   var params ={};
+  var service2 = Restangular.all('users');
   $scope.tweets={}
+  $scope.imag={}
   service.customGET("dashboard",params).then(
   function(data){
     //alert("Inside success");
-    $scope.tweets = data;
-    console.log(data[0].image);
+    $scope.tweets = data.cont;
+    $scope.dop=data.dp;
+    console.log(data.dp[0].dp);
   },
   function(error)
   {
@@ -33,5 +36,25 @@ app.controller('mainCtrl',function($scope,Restangular){
   	console.log(d);
     a=d.split(' ')
     console.log(a[0]);
+  }
+  $scope.dpimg=function(usrname)
+  {
+
+    var param ={uname: usrname};
+
+    service2.customGET("getimage",param).then(
+    function(data){
+      //alert("Inside success");
+      //alert(data.image.url);
+      $scope.imag = data;
+      console.log($scope.imag);
+      return true;
+    },
+    function(error)
+    {
+      //alert("Inside failure");
+      //console.log(error);
+      return false;
+    });
   }
 });

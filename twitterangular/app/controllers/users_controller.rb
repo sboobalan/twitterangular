@@ -54,13 +54,15 @@ class UsersController < ApplicationController
         puts "yyyyyyyyyy"
         #render json: {msg: "No such user"}
       end
-      @tweets=@usr.tweets
-      puts "AAAAAAAAAAA"
-      puts @tweets
-      render json: @tweets
-
+      @tweets=@usr.tweets.where("status='active'").order(created_at: :desc, updated_at: :desc)
+      @g=[]
+      @tweets.each do |t|
+        @g.push(User.find_by username: t.username)
+        puts @g
+      end
+      render json: {cont: @tweets, dp:@g}
     else
-      
+
       render json: {msg: "Page does not exist"}
     end
 
@@ -122,7 +124,14 @@ class UsersController < ApplicationController
      puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaassssssssss"
      puts params[:newdp]
    end
+   def getimage
+     @us=User.find_by username: params[:uname]
 
+     puts "AAAAAAAAAAA"
+     puts params
+     puts @img
+     render json: @us
+   end
    def passwordChange
      @usr1 = User.where("username like '" + session[:username] + "'")[0]
      @usr1.update_attributes(:password => params[:password])
@@ -172,6 +181,8 @@ class UsersController < ApplicationController
 
     def signin_func
       puts params
+      session[:username] = params[:username]
+      puts "session"+session[:username]
       render json: (User.find_by username: params[:username])
     end
     private
@@ -185,7 +196,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :username, :password, :email, :designation,:dp)
     end
     def getusr
-      session['username']='Alex'
-      @usr=User.where("username='"+session['username']+"'")
+      @usr=User.where("username='"+session['username']+"'")[0]
     end
 end

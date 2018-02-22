@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/users/signin_func" => "users#signin_func"
   get "/users/check" => "users#check"
   get "/users/checkmail" => "users#checkmail"
+  get "/users/getimage" => "users#getimage"
   resources :tweets
   get 'users/usertweetsang' => 'users#usertweetsang'
 
