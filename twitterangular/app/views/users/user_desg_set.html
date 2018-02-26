@@ -1,15 +1,9 @@
-<script src="/javascripts/user_desg_set.js"></script>
+<!--<script src="/javascripts/user_desg_set.js"></script>-->
 
 <h1 id="hello">Tweets</h1>
-<!--<%= link_to "Logout", users_path, class: 'rite' %><%= link_to @uname+"| ", tweet_indexn_path(@usr),class: 'rite'  %><%= link_to 'Dashboard| ', new_tweet_path,class: 'rite'   %><% if @type .eql? "moderator"%> <%= link_to 'View Tweets|', mod_front_path,class: 'rite'%><%= link_to 'Update Tweets|', tweets_path,class: 'rite'%><% end %>-->
-<div class="dropdown rite">
-<button onclick="myFunction()" class="dropbtn"><i class="down">
-</i></button>
-  <div id="myDropdown" class="dropdown-content">
-  </div>
-</div>
 
-<div ng-app="userDesgView" ng-controller="userDesgViewCtrl">
+
+<div><!-- ng-app="userDesgView" ng-controller="userDesgViewCtrl">-->
 <table id="display_table">
   <thead>
     <tr>
@@ -38,11 +32,12 @@
 </table>
 </div>
 <br>
-<script type="text/javascript">
-  var params=[
+<!--<script type="text/javascript">
+  /*var params=[
                 {text : "Logout", location : "/users"},
                 {text : "View Stats" , location : "/admin_stat"}
              ]
   var dropdownmenu = document.getElementById("myDropdown");
-  document.onload = addDropDownItem(dropdownmenu,params);
+  document.onload = addDropDownItem(dropdownmenu,params);*/
 </script>
+-->

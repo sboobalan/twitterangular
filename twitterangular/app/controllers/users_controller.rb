@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def user_desg_set
   end
 
+  def userpage
+  end
+
   def type_change
 	@users = User.all.where("designation != 'admin'").paginate(:page => params[:page], :per_page => 10)
   end

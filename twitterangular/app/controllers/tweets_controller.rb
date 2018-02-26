@@ -7,8 +7,9 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
-  # GET /tweets/1
-  # GET /tweets/1.json
+  def admin
+  end
+
   def show
   end
 
@@ -95,7 +96,7 @@ class TweetsController < ApplicationController
     puts "AAAAAAAAAAAAA"
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to new_tweet_path, notice: 'Tweet was successfully created.' }
+        format.html { redirect_to userpage_path, notice: 'Tweet has been submitted for approval.' }
         format.json { render :show, status: :created, location: @tweet }
       else
         format.html { render :new }

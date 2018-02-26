@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src="/javascripts/usertw.js"></script>
+</head>
+
+
+<body ng-app="user" ng-init="twnew=true" ng-init="usrtw=false" >
+  <div class="dropdown rite">
+  <button onclick="myFunction()" class="dropbtn"><i class="down">
+  </i></button>
+    <div id="myDropdown" class="dropdown-content">
+      <a ng-click="showPage()" ng-show="twnew">My Timeline</a>
+      <a ng-click="showPage()" ng-show="usrtw">Post Tweets</a>
+      <a ng-href="/users"> Logout </a>
+    </div>
+  </div>
+  <main ng-show="twnew">
+  </main>
+  <userTweets ng-show="usrtw">
+  </userTweets>
+</body>
+</html>

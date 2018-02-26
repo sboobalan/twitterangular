@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get "/admin" => "tweets#admin"
   get "/admin_stat" => "tweets#admin_stat"
   get "/tweets/tweet_stat" => "tweets#tweet_stat"
   get "/tweets/all_tweets" => "tweets#all_tweets"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get "/users/check" => "users#check"
   get "/users/checkmail" => "users#checkmail"
   get "/users/getimage" => "users#getimage"
+  get "/userpage" => "users#userpage"
   resources :tweets
   get 'users/usertweetsang' => 'users#usertweetsang'
 

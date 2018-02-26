@@ -1,0 +1,22 @@
+<html>
+<head>
+  <script src="/javascripts/admin.js"></script>
+</head>
+
+
+<body ng-app="admin" ng-init="setTweetStats= true" ng-init="setUserDesg=false" >
+  <div class="dropdown rite">
+  <button onclick="myFunction()" class="dropbtn"><i class="down">
+  </i></button>
+    <div id="myDropdown" class="dropdown-content">
+      <a ng-click="showPage()" ng-show="setUserDesg">View Tweet Stats</a>
+      <a ng-click="showPage()" ng-show="setTweetStats">Modify User Designation </a>
+      <a ng-href="/users"> Logout </a>
+    </div>
+  </div>
+  <tweetstats ng-show="setTweetStats">
+  </tweetstats>
+  <userdesgset ng-show="setUserDesg">
+  </userdesgset>
+</body>
+</html>

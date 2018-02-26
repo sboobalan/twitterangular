@@ -1,20 +1,10 @@
 <!doctype html >
-<html >
+<html>
 <head>
-    <script src="/javascripts/usertweets.js"></script>
-
+    <script src="/javascripts/usertw.js"></script>
 </head>
-<body ng-app="usertweets" ng-controller="mainCtrl">
-  <div class="dropdown rite">
-  <button onclick="myFunction()" class="dropbtn"><i class="down">
-  </i></button>
-    <div id="myDropdown" class="dropdown-content">
-    </div>
-  </div>
-
-
-
-  <div>
+<body ng-app="user">
+  <div ng-controller="userTweetsCtrl">
     <div id="nw">
       <div ng-show="tweets[0].username">
         <div ng-init="i=-1"></div>

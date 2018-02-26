@@ -28,7 +28,7 @@ app.controller('signinctrl',function($scope,$window,Restangular){
             window.sessionStorage.setItem('user_name', data.username);
             if(data.designation === "user")
             {
-              window.location.href = '/tweets/new';
+              window.location.href = '/userpage';
             }
             else if (data.designation === "moderator")
             {
