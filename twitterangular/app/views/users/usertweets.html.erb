@@ -28,18 +28,3 @@
     </div>
   </div>
 </body>
-<script>
-var id = window.sessionStorage.getItem("user_id")
-var uname = window.sessionStorage.getItem("user_name")
-var params=[
-              {text : "Logout", location : "/users"},
-              {text : "View Tweets" , location : "/tweets/new"}
-           ]
-var dropdownmenu = document.getElementById("myDropdown");
-if(dropdownmenu.childNodes.length === 1)
-{
-  document.onload = addDropDownItem(dropdownmenu,params);
-}
-</script>
-
-</html>

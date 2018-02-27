@@ -1,4 +1,4 @@
-app=angular.module("dash",['restangular']);
+//app=angular.module("dash",['restangular']);
 app.controller('mainCtrl',function($scope,Restangular){
   var service = Restangular.all('tweets');
   var params ={};

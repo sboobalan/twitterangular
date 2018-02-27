@@ -158,7 +158,7 @@ class UsersController < ApplicationController
             elsif(@newuser[:designation]) .eql? "admin"
               session[:username] = params[:uname]
 			        puts @newuser[:designation]
-			        format.html { redirect_to type_change_url}
+			        format.html { redirect_to admin_url}
             else
               format.html { redirect_to new_tweet_url, flash[:notice] => "LoggedIn Successfully" }
 		   	      session[:username] = params[:uname]

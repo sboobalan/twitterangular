@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get "/moderator" =>"tweets#moderator"
   get "/admin" => "tweets#admin"
   get "/admin_stat" => "tweets#admin_stat"
   get "/tweets/tweet_stat" => "tweets#tweet_stat"

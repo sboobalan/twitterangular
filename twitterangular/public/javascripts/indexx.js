@@ -35,7 +35,7 @@ app.controller('signinctrl',function($scope,$window,Restangular){
               window.location.href = '/moderatorview';
             }
             else if (data.designation === "admin"){
-              window.location.href = '/admin_stat';
+              window.location.href = '/admin';
             }
             //alert("Welcome " + $scope.uname);
           }

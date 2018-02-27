@@ -7,6 +7,9 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
+  def moderator
+  end
+  
   def admin
   end
 

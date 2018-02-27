@@ -1,11 +1,12 @@
 <html >
 <head>
+  <script src="/javascripts/tweetnew.js"></script>
 </head>
 <body >
 <h1>Dashboard</h1>
 
 
-<form enctype="multipart/form-data" action="/tweets" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="pQtCv5bwUA8J8MEF1YPwu9TLZY3/eAAFmB2ypCz2++ZY0wpfTk1NBxjcz8v0gZSMHqLMXyvcpCwYKSEm78c3Vg==" type="hidden">
+<form enctype="multipart/form-data" action="/tweets" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="yjwni7sED1tnnDiZQISxzijJRAZ3/xkaWpbHCt+0aPQIBndeaKKDlL6nIN0YBhLm7Iby+kg8MwmTvx7aOY4neQ==" type="hidden">
 
   <div class="field">
     <input id="tweet_text" name="tweet[text]" type="text" placeholder="Tweet Something">
@@ -46,16 +47,3 @@
   </div>
 </div>
 </body>
-<script>
-var id = window.sessionStorage.getItem("user_id")
-var uname = window.sessionStorage.getItem("user_name")
-var params=[
-              {text : "Logout", location : "/users"},
-              {text : uname , location : "/users/" + id +"/usertweets"}
-           ]
-var dropdownmenu = document.getElementById("myDropdown");
-if(dropdownmenu.childNodes.length === 1)
-{
-  document.onload = addDropDownItem(dropdownmenu,params);
-}
-</script>
