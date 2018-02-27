@@ -13,10 +13,9 @@ app.directive("usertweets",function(){
   return{
     restrict : "E",
     controller : "userTweetsCtrl",
-    templateUrl :  "/tweets/"+sessionStorage.getItem("username")+"/usertweets"
+    templateUrl :  "/users/"+sessionStorage.getItem("user_id")+"/usertweets"
   }
 })
-
 
 app.controller('userTweetsCtrl', function($scope,$location, Restangular) {
 
@@ -27,17 +26,15 @@ app.controller('userTweetsCtrl', function($scope,$location, Restangular) {
     $scope.alert = function(text) {
       alert(text);
     };
-    var id=$location.absUrl().toString().split('/')[4];
+    //var id=$location.absUrl().toString().split('/')[4];
     //window.location.href = "/users/" + id + "/usertweets"
     var service = Restangular.all('users');
-    console.log(sessionStorage.getItem("username"));
-    var params ={user_id: id};
+    console.log(sessionStorage.getItem("user_name"));
+    var params ={user_id: sessionStorage.getItem("user_id")};
     service.customGET("usertweetsang",params).then(
     function(data){
       //alert("Inside success");
-
-
-      console.log("gggg"+id);
+      // console.log("gggg"+id);
       $scope.tweets = data;
       console.log(data);
     },
@@ -76,8 +73,10 @@ app.controller('mainCtrl',function($scope,Restangular){
   service.customGET("dashboard",params).then(
   function(data){
     //alert("Inside success");
-    $scope.tweets = data;
-    console.log(data[0].image);
+    $scope.tweets = data.cont;
+    $scope.dop=data.dp;
+    console.log(data);
+    // alert(data);
   },
   function(error)
   {
@@ -85,8 +84,8 @@ app.controller('mainCtrl',function($scope,Restangular){
     console.log(error);
   });
   $scope.imgnull=function(tw){
-    if(tw.image===null){
-      console.log("false");
+    if(angular.isUndefined(tw.image) || tw.image === null){
+      //console.log("false");
       return false;
 
     }

@@ -24,19 +24,17 @@
 
 <h3>Tweets</h3>
 <div>
-  <div ng-controller="mainCtrl">
     <div id="nw" ng-init="i=-1">
       <div ng-repeat="tweet in tweets" ng-init="i=i+1">
         <div id="tw">
-
-
-          <span class="">
+          <span class="" ng-if="dop[i].dp.thumb.url">
             <img src={{dop[i].dp.thumb.url}}></img>
+            <!-- <img src="fallback/thumb_default.jpeg"></img> -->
           </span>
           <span class="un"> {{tweet.username}} </span><span class="dt">{{tweet.created_at | date:'MMM dd'}} </span>
           <br>
           {{tweet.text}} <br>
-          <div ng-show="imgnull(tweet)">
+          <div ng-if="imgnull(tweet)">
             <img src={{tweet.image.thumb.url}}></img>
           </div>
         </div>
